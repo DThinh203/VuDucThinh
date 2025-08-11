@@ -1,0 +1,148 @@
+[
+{
+	"uri": "//localhost:1313/vi/",
+	"title": "Machine Learning ",
+	"tags": [],
+	"description": "",
+	"content": "Database Resource Optimization với Machine Learning Tổng quan Trong bài lab này, chúng ta sẽ tìm hiểu cách áp dụng Machine Learning (ML) để tối ưu hóa tài nguyên và hiệu suất của cơ sở dữ liệu. Đây là một phương pháp tiếp cận đột phá trong các hệ thống hiện đại, giúp tự động hóa việc tinh chỉnh hiệu suất, đảm bảo sự ổn định và tiết kiệm chi phí vận hành.\nMachine Learning là một lĩnh vực của trí tuệ nhân tạo, cung cấp cho các hệ thống khả năng \u0026ldquo;học\u0026rdquo; từ dữ liệu lịch sử để đưa ra các quyết định thông minh. Trong đề tài này, bạn sẽ được tìm hiểu cách các mô hình ML phân tích các chỉ số hoạt động (performance metrics), khối lượng công việc (workload) để tự động hóa các tác vụ như tinh chỉnh cấu hình (configuration tuning) và tối ưu hóa truy vấn (query optimization).\nBên cạnh đó, chúng ta cũng sẽ khám phá các thành phần hỗ trợ nâng cao như Dự báo tài nguyên (Resource Forecasting) để phân bổ CPU và bộ nhớ một cách hợp lý, tránh lãng phí.\nHãy đảm bảo rằng bạn đã nắm được các kiến thức cơ bản về Quản trị Cơ sở dữ liệu, các khái niệm về Machine Learning và quy trình giám sát hệ thống trước khi bắt đầu triển khai.\nNội dung Giới thiệu Các bước chuẩn bị Tạo dữ liệu và huyến luyện model Hệ thống cảnh báo Kiểm tra Dọn dẹp tài nguyên "
+},
+{
+	"uri": "//localhost:1313/vi/1-introduce/",
+	"title": "Giới thiệu",
+	"tags": [],
+	"description": "",
+	"content": "Machine Learning trên AWS là một bộ công cụ và dịch vụ toàn diện, cho phép các nhà phát triển và doanh nghiệp xây dựng, huấn luyện, và triển khai các mô hình học máy ở mọi quy mô. Nền tảng này giúp loại bỏ gánh nặng của việc thiết lập và quản lý cơ sở hạ tầng phức tạp, cho phép người dùng tập trung hoàn toàn vào việc phát triển ứng dụng thông minh. AWS ML cung cấp các công cụ cho mọi cấp độ kỹ năng, từ các dịch vụ AI tích hợp sẵn cho đến nền tảng chuyên sâu như Amazon SageMaker, giúp đảm bảo tuân thủ các tiêu chuẩn bảo mật và tăng tốc quá trình đưa sản phẩm ra thị trường.\nVới việc sử dụng nền tảng Machine Learning của AWS, bạn sẽ có được những ưu điểm sau:\nKhông cần phải quản lý server vật lý cho việc huấn luyện hay triển khai mô hình. Có thể xây dựng các ứng dụng AI thông minh mà không cần kiến thức chuyên sâu về ML. Quản lý tập trung toàn bộ vòng đời của một dự án ML thông qua Amazon SageMaker. Tự động co giãn tài nguyên tính toán để đáp ứng các workload lớn. Tối ưu hóa chi phí nhờ mô hình thanh toán theo mức sử dụng (pay-as-you-go). Tích hợp liền mạch với các dịch vụ lưu trữ và xử lý dữ liệu khác của AWS. Ghi log và giám sát hiệu suất mô hình một cách tự động. Với những ưu điểm trên, bạn có thể sử dụng nền tảng Machine Learning của AWS thay vì tự xây dựng và quản lý toàn bộ hệ thống từ đầu, giúp doanh nghiệp tiết kiệm đáng kể thời gian, chi phí và nguồn nhân lực kỹ thuật cao.\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createrdssg/",
+	"title": "Khởi tạo RDS và Security Group ",
+	"tags": [],
+	"description": "",
+	"content": "Trong bước này, chúng ta sẽ tập trung vào việc khởi tạo và cấu hình các thành phần cốt lõi cho lớp dữ liệu của ứng dụng. Cụ thể, chúng ta sẽ khởi tạo một cơ sở dữ liệu quan hệ bằng Amazon RDS và thiết lập một Security Group chuyên dụng để bảo vệ nó.\nNội dung Tạo RDS Tạo Security Group Tạo Secret Manager "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.2-amazons3/",
+	"title": "Tạo Amazon S3 ",
+	"tags": [],
+	"description": "",
+	"content": "Trong bước này, chúng ta sẽ tạo một S3 bucket. Đây là nơi sẽ đóng vai trò như một kho lưu trữ an toàn trên đám mây để chứa file dữ liệu huấn luyện và file mô hình Machine Learning của chúng ta.\nNhập S3 trên thanh tìm kiếm dịch vụ và chọn S3. Tạo Bucket:\nBấm nút \u0026ldquo;Create bucket\u0026rdquo;. Bucket name: Đặt một tên duy nhất toàn cầu. AWS Region: Chọn cùng khu vực với các tài nguyên khác của bạn. Hoàn tất:\nGiữ nguyên các cài đặt mặc định còn lại. Kéo xuống cuối và bấm \u0026ldquo;Create bucket\u0026rdquo;. "
+},
+{
+	"uri": "//localhost:1313/vi/4-htcanhbao/4.1-amazonsns/",
+	"title": "Tạo Kênh Thông Báo-Amazon SNS",
+	"tags": [],
+	"description": "",
+	"content": " Nhập SNS trên thanh tìm kiếm và chọn Simple Notification Service Chọn Topics từ menu bên trái, sau đó nhấp vào Create topic. Chọn Standard rồi đặt tên cho Topic rồi ấn Create Topic, Sau khi tạo, vào topic, chọn Create subscription. Mục protocol chọn Email, Enpoint là email của bạn. "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createrdssg/2.1.1-createrds/",
+	"title": "Tạo RDS ",
+	"tags": [],
+	"description": "",
+	"content": " Truy cập giao diện quản trị dịch vụ RDS bằng cách: Nhập RDS vào thanh tìm kiếm dịch vụ và chọn Aurora and RDS Tại trang Aurora and RDS. Ấn Database rồi ấn Create database Chọn Standard create và PostgreSQL. Chọn Free tier. Đặt tên cho DB, giữ nguyên Mastername, Self managed và đặt mật khẩu. Ở Instance configuration chọn db.t3.micro Tại Connectivity kéo xuống Public access, chọn Yes. Cuối cùng chọn Create database "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.3-amazonsagemaker/",
+	"title": "Thiết lập Amazon Sagemaker",
+	"tags": [],
+	"description": "",
+	"content": "Đây là bước thiết lập môi trường làm việc chính của chúng ta, nơi sẽ diễn ra việc phân tích dữ liệu và huấn luyện mô hình Machine Learning.\nCác bước thực hiện: Tạo SageMaker Domain: Truy cập dịch vụ Amazon SageMaker. Ở menu bên trái, chọn Studio.\nChọn Create a SageMaker domain.\nBấm \u0026lsquo;Quick setup\u0026rsquo; để bắt đầu. AWS sẽ tự động cấu hình một Domain cho bạn. Chọn Set up. Cấp quyền truy cập S3:\nSageMaker cần quyền để đọc dữ liệu từ S3 và lưu mô hình đã huấn luyện. Chúng ta sẽ cấp quyền này thông qua IAM Role.\nTruy cập dịch vụ IAM (Identity and Access Management). Ở menu bên trái, chọn Roles.\nTìm Role có tên chứa AmazonSageMaker-ExecutionRole mà SageMaker vừa tạo ở bước trên. Bấm vào tên Role đó, sau đó chọn Add permissions -\u0026gt; Attach policies. Tìm và gắn policy có tên AmazonS3FullAccess. Khởi chạy Studio:\nQuay lại trang SageMaker Domain, chờ đến khi trạng thái là \u0026lsquo;InService\u0026rsquo;. Trong trang chi tiết của Domain, tạo một User Profile (ví dụ: workshop-user) hoặc sử dụng user default có sẵn.\nBấm Launch -\u0026gt; Studio để mở môi trường làm việc. Đây là giao diện hoạt động sau khi chọn Studio. "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/",
+	"title": "Các bước chuẩn bị",
+	"tags": [],
+	"description": "",
+	"content": "\rTrong phần chuẩn bị này, chúng ta sẽ thiết lập các tài nguyên AWS nền tảng cần thiết để xây dựng hệ thống dự đoán. Các tài nguyên này bao gồm một cơ sở dữ liệu, một nơi lưu trữ, và một môi trường Machine Learning.\nChúng ta sẽ cấp quyền cho các dịch vụ này để chúng có thể tương tác với nhau một cách an toàn thông qua việc cấu hình IAM Roles và Security Groups. Đây là bước quan trọng để đảm bảo hệ thống hoạt động đúng và bảo mật.\nNội dung Khởi tạo CSDL - Amazon RDS và Cấu hình Security Group Tạo Kho Lưu Trữ Dữ Liệu - Amazon S3 Thiết Lập Môi Trường ML - Amazon SageMaker Studio "
+},
+{
+	"uri": "//localhost:1313/vi/3-buildamodel/3.1-dulieu/",
+	"title": "Tạo dữ liệu",
+	"tags": [],
+	"description": "",
+	"content": "Các bước thực hiện: Mở SageMaker Studio, chọn JupyterLab mới. Trong trang chính của Jupyter, chọn Python3. Trong Cell đầu tiên hãy dán đoạn code dulieu vào để có thể tạo dữ liệu. Sau khi chạy đoạn code trên sẽ hiện thông báo tạo dữ liệu thành công. Cell tiếp theo dán đoạn code này vào để tải file lên S3. Sau khi chạy sẽ hiện thông báo file đã được tải lên. "
+},
+{
+	"uri": "//localhost:1313/vi/4-htcanhbao/4.2-taoiam/",
+	"title": "Tạo IAM",
+	"tags": [],
+	"description": "",
+	"content": " Vào IAM -\u0026gt; Roles -\u0026gt; Create role. Tại Trusted entity chọn AWS service, Use case: Lambda rồi Next. Gắn các policies: AmazonS3ReadOnlyAccess, SecretsManagerReadWrite, AmazonSNSFullAccess. Đặt tên role là PredictorLambdaRole. "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createrdssg/2.1.2-createsecuritygroup/",
+	"title": "Tạo Security Group",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Security Group Nhập EC2 trên thanh tìm kiếm dịch vụ. Chọn EC2. Tại trang Create EC2. Chọn Security Groups Sau đó chọn Security group vừa tạo. Chọn Edit inbound rules. Chọn type PostgreSQL ,Source Anywhere-Ipv4. "
+},
+{
+	"uri": "//localhost:1313/vi/3-buildamodel/3.2-phantich/",
+	"title": "Phân Tích và Kỹ Thuật Đặc Trưng",
+	"tags": [],
+	"description": "",
+	"content": "Các bước thực hiện: Trong cell mới, đọc dữ liệu từ S3 và bắt đầu xử lý code. Sau khi chạy thành công sẽ hiện thông báo dữ liệu đã được thêm, Trong cell tiếp theo, chúng ta sẽ xây dựng mô hình code. Cuối cùng, lưu lại \u0026ldquo;bộ não\u0026rdquo; chúng ta vừa tạo code. "
+},
+{
+	"uri": "//localhost:1313/vi/3-buildamodel/",
+	"title": "Tạo dữ liệu &amp; huấn luyện model",
+	"tags": [],
+	"description": "",
+	"content": "\rỞ phần này, chúng ta làm việc với dữ liệu và Machine Learning. Chúng ta sẽ bắt đầu bằng cách tạo ra một bộ dữ liệu , sau đó thực hiện các bước phân tích và kỹ thuật đặc trưng để chuẩn bị dữ liệu cho việc huấn luyện.\nMục tiêu của phần này là xây dựng và huấn luyện thành công một mô hình RandomForestRegressor có khả năng dự đoán tải của cơ sở dữ liệu. Toàn bộ các thao tác sẽ được thực hiện bên trong môi trường Amazon SageMaker Studio mà chúng ta đã thiết lập ở phần trước.\nNội dung 3.1. Tạo dữ liệu và tải lên S3\n3.2. Phân Tích và Kỹ Thuật Đặc Trưng\n"
+},
+{
+	"uri": "//localhost:1313/vi/4-htcanhbao/4.3-taolambda/",
+	"title": "Tạo Lambda Function",
+	"tags": [],
+	"description": "",
+	"content": " Nhập Lambda trên thanh dịch vụ và chọn Lambda. Chọn Create a function. Tại trang Create function: Tại Function name nhập tên function Predict-And-Alert-Function\nTại Runtime chọn Python 3.9.\nMục Use an existing role chọn PredictorLambdaRole.\nCuối cùng chọn Create function VIết đoạn code này cho lambda.\nTrong tab Configuration**** -\u0026gt; General configuration, tăng Timeout lên 2 min, tăng Memory lên 512GB . Kéo xuống dưới rồi ấn Save Sau khi tạo Lambda, chúng ta cần tạo Layer cho lambda. Vì khu vực us-east-1 không hỗ trợ nên sẽ dùng Layer ngoài. Tải file Layer xuống.\nTruy cập vào S3, vào bucket đã tạo, chọn Upload. Chọn Add file, sau đó chọn file vừa tải về, sau đó ấn Upload. Sau khi tải lên thành công, chọn file vừa tải lên, chọn Copy S3 URI. Quay lại trang Lambda, chọn Layers, Chọn Create layer. Điền tên layer là scikit-learn-pandas-layer, chọn Upload a file from Amazon S3, sau đó dán đường dẫn S3 URI đã copy ở trên vào ô Amazon S3 link URL, chọn x86_64, Python 3.9. Cuối cùng ấn Create. Quay lại trang Lambda, trong phần Layers, chọn Add a layer. Tại Choose a layer chọn Custom layers sau đó chọn scikit-learn-pandas-layer, chọn version mới nhất rồi ấn Add. "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createrdssg/2.1.3-createsecretmanager/",
+	"title": "Tạo Secrets Manager",
+	"tags": [],
+	"description": "",
+	"content": " Nhập và chọn Secrets Manager. Tại trang Create Secrets Manager.\nChọn Store a new secret. Tại mục Secret type Chọn Credentials for Amazon RDS database.\nĐiền User name và Password. Chọn vào Database vừa tạo rồi chọn Next. Nhập Secret name sau đó chọn Next cho trang cuối chọn Store thì "
+},
+{
+	"uri": "//localhost:1313/vi/4-htcanhbao/",
+	"title": "Hệ thống cảnh báo",
+	"tags": [],
+	"description": "",
+	"content": "\rSau khi đã có một mô hình Machine Learning được huấn luyện ở Phần 3, bây giờ là lúc chúng ta \u0026ldquo;triển khai\u0026rdquo; nó vào một hệ thống tự động. Trong phần này, chúng ta sẽ xây dựng một quy trình khép kín để mô hình có thể đưa ra dự đoán theo lịch trình và gửi cảnh báo khi cần thiết.\nChúng ta sẽ kết hợp sức mạnh của ba dịch vụ serverless cốt lõi của AWS:\nAWS Lambda sẽ đóng vai trò là \u0026ldquo;bộ não\u0026rdquo; thực thi, chạy mã nguồn dự đoán của chúng ta. Amazon SNS sẽ là \u0026ldquo;người đưa tin\u0026rdquo;, chịu trách nhiệm gửi cảnh báo qua email. Amazon EventBridge sẽ là \u0026ldquo;đồng hồ báo thức\u0026rdquo;, tự động kích hoạt toàn bộ quy trình theo một lịch trình định trước. Nội dung: Tạo Kênh Thông Báo-Amazon SNS Tạo IAM Tạo Lambda Function Lên Lịch Thực Thi - Amazon EventBridge "
+},
+{
+	"uri": "//localhost:1313/vi/4-htcanhbao/4.4-amazoneventbridge/",
+	"title": "Lên Lịch Thực Thi - Amazon EventBridge",
+	"tags": [],
+	"description": "",
+	"content": " Nhập EventBridge trên thanh tìm kiếm dịch vụ, chọn Amazon EventBridge. Ở thanh menu bên trái chọn Rules, chọn Create rule. Trong tràn Create rule, Nhập name Run-Predictor-Rule, chọn Schedule sau đó ấn Continue in EventBridge Scheduler. Mục Occurrence chọn Recurring schedule, Schedule type chọn Rate-based schedule và cài cài đặt 15 phút sau đó ấn Next Trong mục Target chọn AWS Lambda, chọn Lambda function đã tạo. Ấn Next cho tới cuối chọn Create schedule. "
+},
+{
+	"uri": "//localhost:1313/vi/5-kiemtra/",
+	"title": "Kiểm tra",
+	"tags": [],
+	"description": "",
+	"content": "\rPhần này chúng ta sẽ kiểm tra xem, model có hoạt động và có gửi thông báo về email cho chúng ta không.\nTruy cập vào Lambda, chọn Functions, vào Lambda Function đã tạo. Ấn deploy để kiểm tra code Lambda. Chọn mục Test và chọn Test để kiểm tra hoạt động của model. Trong hình dưới đây là lỗi làm cho model không hoạt động Lỗi này xảy ra khi chúng ta tạo EventBridge không tạo role và policies để kích hoạt Lambda.\nTạo Policies. Vào IAM, chọn Policies, chọn Create Policy. Nhập đoạn code sau đây vào JSon trong trang Create Policy và ấn Next. Đặt tên cho Policies rồi ấn Create Policy. 4.Tạo Role.\nVào IAM, chọn Roles, chọn Create Role. Chọn Custom trust policy, dán đoạn code này vào JSon, sau đó ấn Next. Ở trang Add permissions, NHập Policy mới tạo InvokePredictLambdaPolicy, chọn sau đó ấn Next, đặt tên role EventBridgeInvokeLambdaRole rồi ấn Create Role. Vào lại Amazon EventBridge, chọn Schedulesm, bấm vào tên schedule Run-Predictor-Rule rồi chọn Edit. Bấm Next để đi đến Step 3: Settings. Trong mục Permissions, chọn Use existing role.\nTrong menu thả xuống, tìm và chọn Role bạn vừa tạo: EventBridgeInvokeLambdaRol.\nBấm Next và Update schedule. Quay lại trang Lambda, Chạy Test lại, kiểm tra Gmail xem có thông báo không. Nếu có thì bạn đã thành công. "
+},
+{
+	"uri": "//localhost:1313/vi/6-cleanup/",
+	"title": "Dọn dẹp tài nguyên  ",
+	"tags": [],
+	"description": "",
+	"content": "Chúng ta sẽ tiến hành các bước sau để xóa các tài nguyên chúng ta đã tạo trong bài thực hành này.\nXóa Lịch trình EventBridge,vào dịch vụ Amazon EventBridge. Ở menu bên trái, chọn Schedules.\nTìm schedule có tên Run-Predictor-Rule, tick vào ô vuông bên cạnh và bấm Delete. Xóa Lambda Function và Layer Vào dịch vụ AWS Lambda, ở menu bên trái, chọn Functions.\nChọn hàm Predict-And-Alert-Function và bấm Actions -\u0026gt; Delete. Ở menu bên trái, chọn Layers.\nChọn layer scikit-learn-pandas-layer và bấm Delete. Xóa Môi trường SageMaker Studio Vào dịch vụ Amazon SageMaker AI, ở menu bên trái, chọn Domains.\nBấm vào tên Domain của bạn (QuickSetupDomain-\u0026hellip;).\nTrong tab User profiles, chọn user của bạn và bấm Delete. Sau khi xóa hết user, quay lại trang danh sách Domains, tick vào ô tròn bên cạnh tên Domain và bấm Delete. Xóa Cơ sở dữ liệu RDS, đây là một trong những nguồn chi phí chính. Vào dịch vụ Amazon RDS, chọn Databases, chọn instance workshop-db. Bấm Actions -\u0026gt; Delete. Trong cửa sổ xác nhận, bỏ tick ở ô Create final snapshot? (để xóa ngay và không tốn chi phí lưu trữ snapshot), sau đó nhập delete me và xác nhận.\nXóa S3 Bucket Vào dịch vụ Amazon S3.\nBấm vào tên bucket của bạn ml-db-workshop-data.\nChọn tất cả các file và thư mục bên trong, sau đó bấm Delete để làm rỗng (empty) bucket. Quay lại danh sách các bucket, chọn bucket đã rỗng và bấm Delete. Xóa SNS Topic Vào dịch vụ Amazon SNS, chọn Topics. Chọn topic DB_Alerts_Topic và bấm Delete.\nXóa IAM Roles và Policies Vào dịch vụ IAM, chọn Roles. Tìm và xóa từng role sau: PredictorLambdaRole\nEventBridgeInvokeLambdaRole\nAmazonSageMaker-ExecutionRole-\u0026hellip; Ở menu bên trái, chọn Policies. Tìm và xóa policy InvokePredictLambdaPolicy. "
+},
+{
+	"uri": "//localhost:1313/vi/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]

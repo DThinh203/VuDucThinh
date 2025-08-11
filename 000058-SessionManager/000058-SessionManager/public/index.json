@@ -1,0 +1,148 @@
+[
+{
+	"uri": "//localhost:1313/2-prerequiste/2.1-createrdssg/2.1.1-createrds/",
+	"title": "Create RDS",
+	"tags": [],
+	"description": "",
+	"content": " Access the RDS service management interface by: Enter RDS in the service search bar and select Aurora and RDS On the Aurora and RDS page. Click Database then click Create database Select Standard create and PostgreSQL. Select Free tier. Set a name for the DB, keep the default Master name, Self managed and set a password. In Instance configuration select db.t3.micro In Connectivity scroll down to Public access, select Yes. Finally select Create database "
+},
+{
+	"uri": "//localhost:1313/2-prerequiste/2.1-createrdssg/",
+	"title": "Initialize RDS and Security Group",
+	"tags": [],
+	"description": "",
+	"content": "In this step, we will focus on initializing and configuring the core components for the application\u0026rsquo;s data layer. Specifically, we will initialize a relational database using Amazon RDS and set up a dedicated Security Group to protect it.\nContent Create RDS Create Security Group Create Secret Manager "
+},
+{
+	"uri": "//localhost:1313/1-introduce/",
+	"title": "Introduction",
+	"tags": [],
+	"description": "",
+	"content": "Machine Learning on AWS is a comprehensive set of tools and services that enables developers and businesses to build, train, and deploy machine learning models at any scale. This platform helps eliminate the burden of setting up and managing complex infrastructure, allowing users to focus entirely on developing intelligent applications. AWS ML provides tools for all skill levels, from ready-to-use AI services to specialized platforms like Amazon SageMaker, helping ensure compliance with security standards and accelerating time-to-market.\nBy using AWS Machine Learning platform, you will get the following advantages:\nNo need to manage physical servers for model training or deployment. Can build intelligent AI applications without deep ML expertise. Centrally manage the entire lifecycle of an ML project through Amazon SageMaker. Automatically scale computing resources to handle large workloads. Optimize costs through pay-as-you-go pricing model. Seamlessly integrate with other AWS data storage and processing services. Automatically log and monitor model performance. With the above advantages, you can use AWS Machine Learning platform instead of building and managing the entire system from scratch, helping businesses save significant time, costs, and high-skilled technical resources.\n"
+},
+{
+	"uri": "//localhost:1313/",
+	"title": "Machine Learning",
+	"tags": [],
+	"description": "",
+	"content": "Database Resource Optimization with Machine Learning Overview In this lab, we will explore how to apply Machine Learning (ML) to optimize database resources and performance. This is a breakthrough approach in modern systems, helping to automate performance tuning, ensure stability and save operational costs.\nMachine Learning is a field of artificial intelligence that provides systems with the ability to \u0026ldquo;learn\u0026rdquo; from historical data to make intelligent decisions. In this topic, you will learn how ML models analyze performance metrics and workloads to automate tasks such as configuration tuning and query optimization.\nIn addition, we will also explore advanced supporting components such as Resource Forecasting to allocate CPU and memory reasonably, avoiding waste.\nMake sure you have mastered the basic knowledge of Database Administration, Machine Learning concepts and system monitoring processes before starting deployment.\nContent Introduction Preparation Steps Create Data \u0026amp; Train Model Alert System Testing Clean up resources "
+},
+{
+	"uri": "//localhost:1313/4-htcanhbao/4.1-amazonsns/",
+	"title": "Update IAM Role",
+	"tags": [],
+	"description": "",
+	"content": "For our EC2 instances to be able to send session logs to the S3 bucket, we will need to update the IAM Role assigned to the EC2 instance by adding a policy that allows access to S3.\nUpdate IAM Role Go to IAM service management console Click Roles. In the search box, enter SSM. Click on the SSM-Role role. Click Attach policies. In the Search box enter S3. Click the policy AmazonS3FullAccess. Click Attach policy. In the production environment, we will grant stricter permissions to the specified S3 bucket. In the framework of this lab, we use the policy AmazonS3FullAccess for convenience.\nNext, we will proceed to create an S3 bucket to store session logs.\n"
+},
+{
+	"uri": "//localhost:1313/2-prerequiste/2.2-amazons3/",
+	"title": "Create Amazon S3",
+	"tags": [],
+	"description": "",
+	"content": "In this step, we will create an S3 bucket. This will serve as a secure cloud storage repository to contain our training data files and Machine Learning model files.\nEnter S3 in the service search bar and select S3. Create Bucket:\nClick the \u0026ldquo;Create bucket\u0026rdquo; button. Bucket name: Set a globally unique name. AWS Region: Choose the same region as your other resources. Complete:\nKeep the remaining default settings. Scroll down to the bottom and click \u0026ldquo;Create bucket\u0026rdquo;. "
+},
+{
+	"uri": "//localhost:1313/3-buildamodel/3.1-dulieu/",
+	"title": "Create Data",
+	"tags": [],
+	"description": "",
+	"content": "Implementation steps: Open SageMaker Studio, select new JupyterLab. In the main Jupyter page, select Python3. In the first Cell, paste the data code to create data. After running the above code, a successful data creation message will appear. In the next Cell, paste this code to upload the file to S3. After running, a message will appear that the file has been uploaded. "
+},
+{
+	"uri": "//localhost:1313/4-htcanhbao/4.2-taoiam/",
+	"title": "Create IAM",
+	"tags": [],
+	"description": "",
+	"content": " Go to IAM -\u0026gt; Roles -\u0026gt; Create role. At Trusted entity select AWS service, Use case: Lambda then Next. Attach policies: AmazonS3ReadOnlyAccess, SecretsManagerReadWrite, AmazonSNSFullAccess. Name the role PredictorLambdaRole. "
+},
+{
+	"uri": "//localhost:1313/2-prerequiste/2.1-createrdssg/2.1.2-createsecuritygroup/",
+	"title": "Create Security Group",
+	"tags": [],
+	"description": "",
+	"content": "Create Security Group Enter EC2 in the service search bar. Select EC2. On the Create EC2 page. Select Security Groups Then select the Security group just created. Select Edit inbound rules. Select type PostgreSQL, Source Anywhere-Ipv4. "
+},
+{
+	"uri": "//localhost:1313/2-prerequiste/",
+	"title": "Preparation Steps",
+	"tags": [],
+	"description": "",
+	"content": "\rIn this preparation section, we will set up the necessary foundational AWS resources to build the prediction system. These resources include a database, storage, and a Machine Learning environment.\nWe will grant permissions for these services to interact with each other securely through configuring IAM Roles and Security Groups. This is an important step to ensure the system operates correctly and securely.\nContent Initialize Database - Amazon RDS and Configure Security Group Create Data Storage - Amazon S3 Set Up ML Environment - Amazon SageMaker Studio "
+},
+{
+	"uri": "//localhost:1313/3-buildamodel/3.2-phantich/",
+	"title": "Analysis and Feature Engineering",
+	"tags": [],
+	"description": "",
+	"content": "Implementation steps: In a new cell, read data from S3 and start processing code. After successful execution, a message will appear that data has been added. In the next cell, we will build the model code. Finally, save the \u0026ldquo;brain\u0026rdquo; we just created code. "
+},
+{
+	"uri": "//localhost:1313/3-buildamodel/",
+	"title": "Create Data &amp; Train Model",
+	"tags": [],
+	"description": "",
+	"content": "\rIn this section, we work with data and Machine Learning. We will start by creating a dataset, then perform analysis and feature engineering steps to prepare the data for training.\nThe goal of this section is to successfully build and train a RandomForestRegressor model capable of predicting database load. All operations will be performed within the Amazon SageMaker Studio environment that we set up in the previous section.\nContent 3.1. Create Data and Upload to S3\n3.2. Analysis and Feature Engineering\n"
+},
+{
+	"uri": "//localhost:1313/4-htcanhbao/4.3-taolambda/",
+	"title": "Create Lambda Function",
+	"tags": [],
+	"description": "",
+	"content": " Enter Lambda in the service bar and select Lambda. Select Create a function. On the Create function page: In Function name enter the function name Predict-And-Alert-Function\nIn Runtime select Python 3.9.\nIn Use an existing role section select PredictorLambdaRole.\nFinally select Create function Write this code for lambda.\nIn the Configuration tab -\u0026gt; General configuration, increase Timeout to 2 min, increase Memory to 512GB. Scroll down and click Save After creating Lambda, we need to create a Layer for lambda. Since the us-east-1 region doesn\u0026rsquo;t support it, we\u0026rsquo;ll use an external Layer. Download the Layer file.\nAccess S3, go to the created bucket, select Upload. Select Add file, then select the downloaded file, then click Upload. After successful upload, select the uploaded file, select Copy S3 URI. Return to the Lambda page, select Layers, Select Create layer. Enter layer name scikit-learn-pandas-layer, select Upload a file from Amazon S3, then paste the copied S3 URI link into the Amazon S3 link URL box, select x86_64, Python 3.9. Finally click Create. Return to the Lambda page, in the Layers section, select Add a layer. In Choose a layer select Custom layers then select scikit-learn-pandas-layer, select the latest version then click Add. "
+},
+{
+	"uri": "//localhost:1313/2-prerequiste/2.1-createrdssg/2.1.3-createsecretmanager/",
+	"title": "Create Secrets Manager",
+	"tags": [],
+	"description": "",
+	"content": " Enter and select Secrets Manager. On the Create Secrets Manager page.\nSelect Store a new secret. In the Secret type section, select Credentials for Amazon RDS database.\nFill in User name and Password. Select the Database just created then select Next. Enter Secret name then select Next for the last page select Store. "
+},
+{
+	"uri": "//localhost:1313/2-prerequiste/2.3-amazonsagemaker/",
+	"title": "Set up Amazon SageMaker",
+	"tags": [],
+	"description": "",
+	"content": "This is the step to set up our main working environment, where data analysis and Machine Learning model training will take place.\nImplementation steps: Create SageMaker Domain: Access Amazon SageMaker service. In the left menu, select Studio.\nSelect Create a SageMaker domain.\nClick \u0026lsquo;Quick setup\u0026rsquo; to start. AWS will automatically configure a Domain for you. Select Set up. Grant S3 access permissions:\nSageMaker needs permission to read data from S3 and save trained models. We will grant this permission through IAM Role.\nAccess IAM (Identity and Access Management) service. In the left menu, select Roles.\nFind the Role with a name containing AmazonSageMaker-ExecutionRole that SageMaker just created in the step above. Click on that Role name, then select Add permissions -\u0026gt; Attach policies. Find and attach the policy named AmazonS3FullAccess. Launch Studio:\nReturn to the SageMaker Domain page, wait until the status is \u0026lsquo;InService\u0026rsquo;. In the Domain details page, create a User Profile (e.g., workshop-user) or use the existing default user.\nClick Launch -\u0026gt; Studio to open the working environment. This is the interface after selecting Studio. "
+},
+{
+	"uri": "//localhost:1313/4-htcanhbao/",
+	"title": "Alert System",
+	"tags": [],
+	"description": "",
+	"content": "\rAfter having a trained Machine Learning model in Part 3, now it\u0026rsquo;s time to \u0026ldquo;deploy\u0026rdquo; it into an automated system. In this section, we will build a closed-loop process so the model can make predictions on schedule and send alerts when necessary.\nWe will combine the power of three core AWS serverless services:\nAWS Lambda will act as the \u0026ldquo;brain\u0026rdquo; executor, running our prediction source code. Amazon SNS will be the \u0026ldquo;messenger\u0026rdquo;, responsible for sending alerts via email. Amazon EventBridge will be the \u0026ldquo;alarm clock\u0026rdquo;, automatically triggering the entire process on a predetermined schedule. Content: Create Notification Channel - Amazon SNS Create IAM Create Lambda Function Schedule Execution - Amazon EventBridge "
+},
+{
+	"uri": "//localhost:1313/4-htcanhbao/4.4-amazoneventbridge/",
+	"title": "Schedule Execution - Amazon EventBridge",
+	"tags": [],
+	"description": "",
+	"content": " Enter EventBridge in the service search bar, select Amazon EventBridge. In the left menu bar select Rules, select Create rule. In the Create rule page, enter name Run-Predictor-Rule, select Schedule then click Continue in EventBridge Scheduler. In Occurrence section select Recurring schedule, Schedule type select Rate-based schedule and set it to 15 minutes then click Next In Target section select AWS Lambda, select the Lambda function created. Click Next until the end and select Create schedule. "
+},
+{
+	"uri": "//localhost:1313/5-kiemtra/",
+	"title": "Testing",
+	"tags": [],
+	"description": "",
+	"content": "\rIn this section we will check whether the model works and sends notifications to our email.\nAccess Lambda, select Functions, go to the Lambda Function created. Click deploy to check Lambda code. Select Test section and select Test to check model operation. The image below shows an error that prevents the model from working This error occurs when we create EventBridge without creating role and policies to trigger Lambda.\nCreate Policies. Go to IAM, select Policies, select Create Policy. Enter the following code into JSON in the Create Policy page and click Next. Name the Policy and click Create Policy. Create Role. Go to IAM, select Roles, select Create Role. Select Custom trust policy, paste this code into JSON, then click Next. On the Add permissions page, enter the newly created Policy InvokePredictLambdaPolicy, select it then click Next, name the role EventBridgeInvokeLambdaRole then click Create Role. Go back to Amazon EventBridge, select Schedules, click on the schedule name Run-Predictor-Rule then select Edit. Click Next to go to Step 3: Settings. In the Permissions section, select Use existing role.\nIn the dropdown menu, find and select the Role you just created: EventBridgeInvokeLambdaRole.\nClick Next and Update schedule. Return to the Lambda page, run Test again, check Gmail to see if there are any notifications. If yes, you have succeeded. "
+},
+{
+	"uri": "//localhost:1313/6-cleanup/",
+	"title": "Clean up resources",
+	"tags": [],
+	"description": "",
+	"content": "We will proceed with the following steps to delete the resources we created in this lab.\nDelete EventBridge Schedule, go to Amazon EventBridge service. In the left menu, select Schedules.\nFind the schedule named Run-Predictor-Rule, tick the square box next to it and click Delete. Delete Lambda Function and Layer Go to AWS Lambda service, in the left menu, select Functions.\nSelect the Predict-And-Alert-Function function and click Actions -\u0026gt; Delete. In the left menu, select Layers.\nSelect the scikit-learn-pandas-layer layer and click Delete. Delete SageMaker Studio Environment Go to Amazon SageMaker AI service, in the left menu, select Domains.\nClick on your Domain name (QuickSetupDomain-\u0026hellip;).\nIn the User profiles tab, select your user and click Delete. After deleting all users, return to the Domains list page, tick the circle next to the Domain name and click Delete. Delete RDS Database, this is one of the main cost sources. Go to Amazon RDS service, select Databases, select workshop-db instance. Click Actions -\u0026gt; Delete. In the confirmation window, uncheck the Create final snapshot? box (to delete immediately and not incur snapshot storage costs), then enter delete me and confirm.\nDelete S3 Bucket Go to Amazon S3 service.\nClick on your bucket name ml-db-workshop-data.\nSelect all files and folders inside, then click Delete to empty the bucket. Return to the bucket list, select the empty bucket and click Delete. Delete SNS Topic Go to Amazon SNS service, select Topics. Select the DB_Alerts_Topic topic and click Delete.\nDelete IAM Roles and Policies Go to IAM service, select Roles. Find and delete each of the following roles: PredictorLambdaRole\nEventBridgeInvokeLambdaRole\nAmazonSageMaker-ExecutionRole-\u0026hellip; In the left menu, select Policies. Find and delete the InvokePredictLambdaPolicy policy. "
+},
+{
+	"uri": "//localhost:1313/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]
