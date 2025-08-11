@@ -11,11 +11,13 @@ pre : " <b> 4.1 </b> "
 2. Select **Topics** from the left menu, then click **Create topic**.
 ![WN](/images/4.warning/001-cb.png)
 
-3. Select **Standard** then name the Topic and click Create Topic.
+3. Select **Standard** then name the Topic and click **Create Topic**.
 ![WN](/images/4.warning/002-cb.png)
 
 4. After creating, go to the topic, select **Create subscription**.
 ![WN](/images/4.warning/003-cb.png)
 
-5. In protocol section select **Email**, **Endpoint** is your email.
+5. In protocol section select **Email**, **Endpoint** is your email address.
 ![WN](/images/4.warning/004-cb.png)
+
+6. Check your email and confirm the subscription by clicking the confirmation link sent by AWS.
